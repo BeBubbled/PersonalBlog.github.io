@@ -1,4 +1,4 @@
-# Independent Study
+## Independent Study
 
 [TOC]
 
@@ -65,7 +65,7 @@ Note:
 * Solution 2: train NN to generate fake/pseudo data 
   
   * idea: train a model A to create <u>fake/pseudo</u> data to save disk.
-  * flow chart![image-20210824112213330](Literature Comments Notes.assets/image-20210824112213330-20210825132047987.png)
+  * flow chart![image-20210824112213330](https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210824112213330-20210825132047987.png)
     * [Continual Learning with Deep Generative Replay](https://arxiv.org/abs/1705.08690)
       * [FearNet: Brain-Inspired Model for Incremental Learning](https://arxiv.org/abs/1711.10563)
   * what if we change some pre-requisition: different task could not be undertake with same network structure
@@ -104,21 +104,21 @@ Note:
       
       $$
       \begin{array}{l}
-\text { Accuracy }=\frac{1}{T} \sum_{i=1}^{T} R_{T, i}\\
-\qquad\text{explanation: skip}\\
-\text { Backward Transfer }=\frac{1}{T-1} \sum_{i=1}^{T-1} (R_{T,i}-R_{i, i})
-\left\{
-\begin{array}{l}
-<0,usually <0\\
-=0,\\
-0,great job!\\
-\end{array}
-\right.\\
-\qquad\qquad=\text{average value of}\sum(\text{final accuracy of each task}-\text{initial accuracy of each task})\\
-\qquad\text{explanation: measure how better this life-long learning it is }\\\\
-\text { Forward Transfer }=\frac{1}{T-1} \sum_{i=2}^{T} R_{i-1, i}-R_{0, i}\\
-\qquad \text{explanation: how better it is before learn task T}
-\end{array}\\
+      \text { Accuracy }=\frac{1}{T} \sum_{i=1}^{T} R_{T, i}\\
+      \qquad\text{explanation: skip}\\
+      \text { Backward Transfer }=\frac{1}{T-1} \sum_{i=1}^{T-1} (R_{T,i}-R_{i, i})
+      \left\{
+      \begin{array}{l}
+      <0,usually <0\\
+      =0,\\
+      0,great job!\\
+      \end{array}
+      \right.\\
+      \qquad\qquad=\text{average value of}\sum(\text{final accuracy of each task}-\text{initial accuracy of each task})\\
+      \qquad\text{explanation: measure how better this life-long learning it is }\\\\
+      \text { Forward Transfer }=\frac{1}{T-1} \sum_{i=2}^{T} R_{i-1, i}-R_{0, i}\\
+      \qquad \text{explanation: how better it is before learn task T}
+      \end{array}\\
       $$
 
 * Model Expansion
@@ -132,7 +132,7 @@ Note:
     
     * [Progressive neural networks 2016](https://arxiv.org/abs/1606.04671)
       
-      * ![image-20210816044359382](Literature Comments Notes.assets/25-11-16-28-image-20210816044359382-20210825132047978.png)
+      * ![image-20210816044359382](https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/25-11-16-28-image-20210816044359382-20210825132047978.png)
     
     * [Expert Gate](https://arxiv.org/abs/1611.06194)
       
@@ -143,7 +143,7 @@ Note:
       * multi task+classifier
     3. [Net2Net](https://arxiv.org/abs/1811.07017)
        
-       * ![image-20210816044951261](Literature Comments Notes.assets/25-11-16-32-image-20210816044951261-20210825132047978.png)
+       * ![image-20210816044951261](https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/25-11-16-32-image-20210816044951261-20210825132047978.png)
        * add new neural while not forget
 
 Future development of life-long learning
@@ -182,42 +182,66 @@ All the information about task A must therefore have been absorbed into the post
 
 Based on [A practical bayesian framework for backpropagation networks](https://authors.library.caltech.edu/13793/1/MACnc92b.pdf) work, we use Gaussian distribution with mean equals to $\theta ^{*}_{A}$ to simulate the posterior distribution. Diagonal precision : Diagonal of the Fisher information matrix F.
 
-Fisher information matrix F 
+**Fisher information matrix F**
 
-($\color{red}{\text{Actually haven't fully understanded}}$)
+$&\Huge\textcolor{red}{\text{Strict Deduction}}\\$
 
-"the covariance of the gradient of the model’s log likelihood function with respect to points sampled from the model’s distribution"
+Score function used to write as $s(\theta)=\nabla_{\theta} \log p(x \mid \theta)$
 
-Usage: 
+"The log-likelihood function's difrst derivative"
 
-1. estimate the variance of MLE
+at there, we need to know that the **log is just used to decrease the complexity of likelihood**
+which means you could replace it as $ln$ or anyother function at here we choose convert it to ln
 
-2. ![img](Literature Comments Notes.assets/28c4c679b6758707ed779c066d0e8e3a_1440w-9912047.jpg)
-   
-   e.g. estimate the curvance of the log likehood's  top point
-   
-   the higher, the more information you could get
-
-3. 
-
+Therefore $s(\theta)=\nabla_{\theta} \ln p(x \mid \theta)$
 $$
-\begin{aligned}
-\overline{\mathcal{F}} &=E_{Q_{x y}}\left[\nabla \log p(x, y \mid \theta) \nabla \log p(x, y \mid \theta)^{\top}\right] \\
-&=E_{Q x}\left[E_{Q_{y}}\left[\nabla \log p(y \mid x, \theta) \nabla \log p(y \mid x, \theta)^{\top}\right]\right] \\
-&=\frac{1}{N} \sum_{n}\left[\nabla \log p\left(y_{n} \mid x_{n}, \theta\right) \nabla \log p\left(y_{n} \mid x_{n}, \theta\right)^{\top}\right]
-\end{aligned}
+\begin{array}{l}
+
+\underset{p(x \mid \theta)}{\mathbb{E}}[s(\theta)]&=\underset{p(x \mid \theta)}{\mathbb{E}}[\nabla \ln p(x \mid \theta)]\\
+&=\int \nabla \ln p(x \mid \theta) p(x \mid \theta) \mathrm{d} x\\
+&=\int \dfrac{\nabla p(x \mid \theta)}{p(x|\theta)\ln(e)}p(x|\theta) \mathrm{d} x\\\\
+&\text{apply Leibniz' Rule}\\\\
+&=\nabla \int \dfrac{ p(x \mid \theta)}{p(x|\theta)}p(x|\theta) \mathrm{d} x\\
+&=\nabla 1\\
+&=0
+\end{array}
 $$
+
+The variance of $s(\theta)$ 
+$$
+\mathcal{I}(\theta)=Var(s(\theta))=E\left[S(X ; \theta)^{2}\right]-E[S(X ; \theta)]^{2}=E\left[S(X ; \theta)^{2}\right]=Fisher\ Information
+$$
+The variance of $s(\theta)$ is defined to be **Fisher information**
+
+Wiki reference:
+$$
+\mathcal{I}(\theta)=\mathrm{E}\left[\left(\frac{\partial}{\partial \theta} \log f(X ; \theta)\right)^{2} \mid \theta\right]=\int_{\mathbb{R}}\left(\frac{\partial}{\partial \theta} \log f(x ; \theta)\right)^{2} f(x ; \theta) d x\\
+\because \frac{\partial^{2}}{\partial \theta^{2}} \log f(X ; \theta)=\frac{\frac{\partial^{2}}{\partial \theta^{2}} f(X ; \theta)}{f(X ; \theta)}-\left(\frac{\frac{\partial}{\partial \theta} f(X ; \theta)}{f(X ; \theta)}\right)^{2}=\frac{\frac{\partial^{2}}{\partial \theta^{2}} f(X ; \theta)}{f(X ; \theta)}-\left(\frac{\partial}{\partial \theta} \log f(X ; \theta)\right)^{2}\\
+addition \because \mathrm{E}\left[\frac{\frac{\partial^{2}}{\partial \theta^{2}} f(X ; \theta)}{f(X ; \theta)} \mid \theta\right]=\frac{\partial^{2}}{\partial \theta^{2}} \int_{\mathbb{R}} f(x ; \theta) d x=0\\
+\therefore \mathcal{I}=-E\left(\frac{\partial^{2}}{\partial \theta^{2}} \log f(\mathbf{X} ; \theta)\right)
+$$
+Based on this conclusion, 
+
+**Fisher Information meaning: the expectation of  log likelihood's minus second derivative under real value.** 
+
+e.g. normalized Bernoulli log likelihood
+
+![image-20210831113819487](https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210831113819487.png)
+
+At here, it's curvature of top point. The larger curvature is, the Bernoulli sharper log likelihood which means contain more info (Reliable).
 
 Lost Function:
 $$
 \mathcal{L}(\theta)=\mathcal{L}_{B}(\theta)+\sum_{i} \frac{\lambda}{2} F_{i}\left(\theta_{i}-\theta_{A, i}^{*}\right)^{2}\\
 $$
 
+
+
 $\theta^{*}_{A,i}$ parameter learned from task A
 
 Connected Papers:
 
-![image-20210825115037345](Literature Comments Notes.assets/image-20210825115037345-9912048.png)
+![image-20210825115037345](https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210825115037345-9912048.png)
 
 ## MAS
 
@@ -254,3 +278,10 @@ explore connected papers in a
 # Consideration
 
 The Essence of Neural Network
+
+# Review
+
+$$
+P(\theta \mid X)=\frac{P(X \mid \theta) \times P(\theta)}{P(X)}
+$$
+
