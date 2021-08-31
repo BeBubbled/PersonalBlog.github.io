@@ -215,10 +215,17 @@ The variance of $s(\theta)$ is defined to be **Fisher information**
 
 Wiki reference:
 $$
-\mathcal{I}(\theta)=\mathrm{E}\left[\left(\frac{\partial}{\partial \theta} \log f(X ; \theta)\right)^{2} \mid \theta\right]=\int_{\mathbb{R}}\left(\frac{\partial}{\partial \theta} \log f(x ; \theta)\right)^{2} f(x ; \theta) d x\\
-\because \frac{\partial^{2}}{\partial \theta^{2}} \log f(X ; \theta)=\frac{\frac{\partial^{2}}{\partial \theta^{2}} f(X ; \theta)}{f(X ; \theta)}-\left(\frac{\frac{\partial}{\partial \theta} f(X ; \theta)}{f(X ; \theta)}\right)^{2}=\frac{\frac{\partial^{2}}{\partial \theta^{2}} f(X ; \theta)}{f(X ; \theta)}-\left(\frac{\partial}{\partial \theta} \log f(X ; \theta)\right)^{2}\\
-addition \because \mathrm{E}\left[\frac{\frac{\partial^{2}}{\partial \theta^{2}} f(X ; \theta)}{f(X ; \theta)} \mid \theta\right]=\frac{\partial^{2}}{\partial \theta^{2}} \int_{\mathbb{R}} f(x ; \theta) d x=0\\
-\therefore \mathcal{I}=-E\left(\frac{\partial^{2}}{\partial \theta^{2}} \log f(\mathbf{X} ; \theta)\right)
+\begin{array}{l}
+&\mathcal{I}(\theta)=\mathrm{E}\left[\left(\frac{\partial}{\partial \theta} \log f(X ; \theta)\right)^{2} \mid \theta\right]=\int_{\mathbb{R}}\left(\frac{\partial}{\partial \theta} \log f(x ; \theta)\right)^{2} f(x ; \theta) d x\\
+
+&\because \frac{\partial^{2}}{\partial \theta^{2}} \log f(X ; \theta)=\frac{\frac{\partial^{2}}{\partial \theta^{2}} f(X ; \theta)}{f(X ; \theta)}-\left(\frac{\frac{\partial}{\partial \theta} f(X ; \theta)}{f(X ; \theta)}\right)^{2}=\frac{\frac{\partial^{2}}{\partial \theta^{2}} f(X ; \theta)}{f(X ; \theta)}-\left(\frac{\partial}{\partial \theta} \log f(X ; \theta)\right)^{2}\\
+
+
+&addition \because \mathrm{E}\left[\frac{\frac{\partial^{2}}{\partial \theta^{2}} f(X ; \theta)}{f(X ; \theta)} \mid \theta\right]=\frac{\partial^{2}}{\partial \theta^{2}} \int_{\mathbb{R}} f(x ; \theta) d x=0\\
+
+
+&\therefore \mathcal{I}=-E\left(\frac{\partial^{2}}{\partial \theta^{2}} \log f(\mathbf{X} ; \theta)\right)
+\end{array}
 $$
 Based on this conclusion, 
 
