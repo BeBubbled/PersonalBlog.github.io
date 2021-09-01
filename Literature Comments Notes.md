@@ -159,6 +159,8 @@ Future development of life-long learning
 
 ## [EWC](https://drive.google.com/file/d/1eUoUjlcSg-DS3Tr-zn_ViPQHyJdg4bqH/view?usp=sharing)
 
+Briefly speaking: Compute the 2nd derivative of the distribution to measure if current distributuion is strong enough to express the potential distribution.
+
 Bayes Point of View:
 $$
 \begin{array}{ll}
@@ -236,6 +238,12 @@ e.g. normalized Bernoulli log likelihood
 ![image-20210831113819487](https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210831113819487.png)
 
 At here, it's curvature of top point. The larger curvature is, the Bernoulli sharper log likelihood which means contain more info (Reliable).
+
+
+
+Thererfore fisher information could be used to determine if the variable is crucial to previous task.
+
+
 
 Lost Function:
 $$
