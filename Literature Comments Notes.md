@@ -157,7 +157,19 @@ Future development of life-long learning
 
 # Literature Comments
 
-## [EWC](https://drive.google.com/file/d/1eUoUjlcSg-DS3Tr-zn_ViPQHyJdg4bqH/view?usp=sharing)
+![image-20210901125947070](Literature%20Comments%20Notes.assets/image-20210901125947070.png)
+
+## Prior-focused
+
+Question: Will life-long learning perform better on stable model? I guess yes. But I can not give the math proof.
+
+e.g. For the same task 1, get model A after 10 epoch, get model B after 20 epoch, get model C after epoch 40 epoch. Based on them, we could ensure the correcrtness of A, B C shall droped.
+
+How about their performance on task 2?
+
+
+
+### [EWC](https://drive.google.com/file/d/1eUoUjlcSg-DS3Tr-zn_ViPQHyJdg4bqH/view?usp=sharing)
 
 Briefly speaking: Compute the 2nd derivative of the distribution to measure if current distributuion is strong enough to express the potential distribution.
 
@@ -186,7 +198,7 @@ Based on [A practical bayesian framework for backpropagation networks](https://a
 
 **Fisher information matrix F**
 
-$&\Huge\textcolor{red}{\text{Strict Deduction}}\\$
+$&\large\textcolor{red}{\text{Strict Deduction}}\\$
 
 Score function used to write as $s(\theta)=\nabla_{\theta} \log p(x \mid \theta)$
 
@@ -218,20 +230,20 @@ The variance of $s(\theta)$ is defined to be **Fisher information**
 Wiki reference:
 $$
 \begin{array}{l}
-&\mathcal{I}(\theta)=\mathrm{E}\left[\left(\frac{\partial}{\partial \theta} \log f(X ; \theta)\right)^{2} \mid \theta\right]=\int_{\mathbb{R}}\left(\frac{\partial}{\partial \theta} \log f(x ; \theta)\right)^{2} f(x ; \theta) d x\\
+&\mathcal{I}(\theta)=\mathrm{E}\left[\left(\frac{\partial}{\partial \theta} \log p(X ; \theta)\right)^{2} \mid \theta\right]=\int_{\mathbb{R}}\left(\frac{\partial}{\partial \theta} \log p(x ; \theta)\right)^{2} p(x ; \theta) d x\\
 
-&\because \frac{\partial^{2}}{\partial \theta^{2}} \log f(X ; \theta)=\frac{\frac{\partial^{2}}{\partial \theta^{2}} f(X ; \theta)}{f(X ; \theta)}-\left(\frac{\frac{\partial}{\partial \theta} f(X ; \theta)}{f(X ; \theta)}\right)^{2}=\frac{\frac{\partial^{2}}{\partial \theta^{2}} f(X ; \theta)}{f(X ; \theta)}-\left(\frac{\partial}{\partial \theta} \log f(X ; \theta)\right)^{2}\\
-
-
-&addition \because \mathrm{E}\left[\frac{\frac{\partial^{2}}{\partial \theta^{2}} f(X ; \theta)}{f(X ; \theta)} \mid \theta\right]=\frac{\partial^{2}}{\partial \theta^{2}} \int_{\mathbb{R}} f(x ; \theta) d x=0\\
+&\because \frac{\partial^{2}}{\partial \theta^{2}} \log p(X ; \theta)=\frac{\frac{\partial^{2}}{\partial \theta^{2}} p(X ; \theta)}{p(X ; \theta)}-\left(\frac{\frac{\partial}{\partial \theta} p(X ; \theta)}{p(X ; \theta)}\right)^{2}=\frac{\frac{\partial^{2}}{\partial \theta^{2}} p(X ; \theta)}{p(X ; \theta)}-\left(\frac{\partial}{\partial \theta} \log p(X ; \theta)\right)^{2}\\
 
 
-&\therefore \mathcal{I}=-E\left(\frac{\partial^{2}}{\partial \theta^{2}} \log f(\mathbf{X} ; \theta)\right)
+&addition \because \mathrm{E}\left[\frac{\frac{\partial^{2}}{\partial \theta^{2}} p(X ; \theta)}{p(X ; \theta)} \mid \theta\right]=\frac{\partial^{2}}{\partial \theta^{2}} \int_{\mathbb{R}} p(x ; \theta) d x=0\\
+
+
+&\therefore \mathcal{I}=-E\left(\frac{\partial^{2}}{\partial \theta^{2}} \log p(\mathbf{X} ; \theta)\right)
 \end{array}
 $$
 Based on this conclusion, 
 
-**Fisher Information meaning: the expectation of  log likelihood's minus second derivative under real value.** 
+**Fisher Information meaning: the expectation of  log likelihood's minus second derivative under real value. The higher second derivative, the more import this variable is.**
 
 e.g. normalized Bernoulli log likelihood
 
@@ -256,9 +268,19 @@ $\theta^{*}_{A,i}$ parameter learned from task A
 
 Connected Papers:
 
-![image-20210825115037345](https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210825115037345-9912048.png)
+<img src="https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210825115037345-9912048.png" alt="image-20210825115037345" style="zoom:33%;" />
 
-## MAS
+### MAS
+
+Add small perturbations to the current point to see if the function value change drasticlly.
+$$
+\begin{array}{l}
+&L(\theta)=L_{n}(\theta)+\lambda \sum_{i, j} \Omega_{i j}\left(\theta_{i j}-\theta_{i j}^{*}\right)^{2}\\
+&where\ \Omega_{i j}=\frac{1}{N} \sum_{k=1}^{N}\left\|g_{i j}\left(x_{k}\right)\right\|\\
+&\sum_{i, j} g_{i j}\left(x_{k}\right) \delta_{i j} \approx F\left(x_{k} ; \theta+\delta\right)-F\left(x_{k} ; \theta\right)  
+\end{array}
+$$
+**They all follow the same idea that extract information from the curvature of the function. Explainable**
 
 # Reading Waitlist
 
