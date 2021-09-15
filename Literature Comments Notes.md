@@ -157,7 +157,25 @@ Future development of life-long learning
 
 # Literature Comments
 
-![image-20210901125947070](Literature%20Comments%20Notes.assets/image-20210901125947070.png)
+![image-20210914194150276](https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210914194150276.png)
+
+![image-20210914194417766](https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210914194417766.png)
+
+![image-20210901125947070](https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210901125947070.png)
+
+## Overview
+
+### [Continual learning in neural networks](Literatures/Continual learning in neural networks.pdf)
+
+Rethinking difference:
+
+| -                           | $Y\quad Y^{t+1} $ | $P(X^{t})\quad P(X^{t+1})$ | $P(Y^{t})\quad P(Y^{t+1})$ |
+| --------------------------- | ----------------- | -------------------------- | -------------------------- |
+| incremental class learning  | $\neq$            |                            | $=$                        |
+| incremental domain learning |                   | $\neq$                     | $=$                        |
+| incremental task learning   |                   | $\neq$                     | $\neq$                     |
+
+
 
 ## Prior-focused
 
@@ -169,7 +187,21 @@ How about their performance on task 2?
 
 
 
-### [EWC](https://drive.google.com/file/d/1eUoUjlcSg-DS3Tr-zn_ViPQHyJdg4bqH/view?usp=sharing)
+### [EWC](Literatures/Overcoming catastrophic forgetting in neuralnetworks.pdf)
+
+* Problem  Addressing:
+
+  Achieving artiﬁcial general intelligence **requires that agents are able to learn and remember many different tasks** Legg and Hutter [2007]. This is particularly difﬁcult in real-world settings: the sequence of **tasks may not be explicitly labelled, tasks may switch unpredictably, and any individual task may not recur for long time intervals**. Critically, therefore, intelligent agents must demonstrate a capacity for continual learning: that is, **the ability to learn consecutive tasks without forgetting how to perform previously trained tasks.**
+
+* Biomedical Realted Information
+
+  Papers need to read
+
+  learnign new skill ? --> proportion of excitatory synapses are strengthenedA : volume increased --> months later, these dendritic spines remain
+
+  When some specific spines are erased. the skill is forgotten
+
+  Based on previous experimental findings, we could said continual learning is relay on task-specific stynaptics' consolidation: knowledge about how to perform a previously acquired task is durably encoded in a proportion of synapses that are rendered less plastic and therefore stable over long timescales.
 
 Briefly speaking: Compute the 2nd derivative of the distribution to measure if current distributuion is strong enough to express the potential distribution.
 
@@ -270,7 +302,7 @@ Connected Papers:
 
 <img src="https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210825115037345-9912048.png" alt="image-20210825115037345" style="zoom:33%;" />
 
-### MAS
+### [MAS](Literatures/Memory Aware Synapses- Learning what (not) to forget.pdf)
 
 Add small perturbations to the current point to see if the function value change drasticlly.
 $$
@@ -281,6 +313,53 @@ $$
 \end{array}
 $$
 **They all follow the same idea that extract information from the curvature of the function. Explainable**
+
+
+
+## Model Growing
+
+### [Progressive Neural Networks](Literatures/Progressive neural networks.pdf)
+
+$$
+h_{i}^{(k)}=f\left(W_{i}^{(k)} h_{i-1}^{(k)}+\sum_{j<k} U_{i}^{(k: j)} h_{i-1}^{(j)}\right)
+$$
+
+<img src="https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210914194933820.png" alt="image-20210914194933820" style="zoom:25%;" />
+
+
+
+**Drawbacks**
+
+1. model grows linarly with the number of trained tasks
+
+2. Need to know task labels during test
+
+3. 
+   1. Avoid forgetting
+   2. x Fixed memory and compute
+   3. Enable forward transfer
+   4. x Enable backward transfor
+   5. Do not store examples
+
+## Knowledge Distillation
+
+### [Learning without Forgetting](Literatures/Learning without Forgetting.pdf)
+
+| <img src="https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210914211145246.png" alt="image-20210914211145246" style="zoom:50%;" /> | <img src="https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210914212313448.png" alt="image-20210914212313448" style="zoom:50%;" /> |      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
+
+Training Method
+
+| Training method                   | -                                                            |
+| --------------------------------- | ------------------------------------------------------------ |
+| Feature extraction                | Fix $\theta_{s}\, ,\theta_{o}$ train $\theta_{n}$            |
+| Finetune                          | Fix $\theta_{s}$ train $\theta_{o}\, ,\theta_{n}$            |
+| Joint training                    | re-train all layers $\theta_{s}\, ,\theta_{o}\, ,\theta_{n}$<br />**Dataset: all tasks' images&labels** |
+| Learning without Forgetting (LwF) | re-train all layers $\theta_{s}\, ,\theta_{o}\, ,\theta_{n}$<br />**Dataset: limit to the new task's images&label** |
+
+ need experiment to explore more
+
+
 
 # Reading Waitlist
 
@@ -321,4 +400,8 @@ The Essence of Neural Network
 $$
 P(\theta \mid X)=\frac{P(X \mid \theta) \times P(\theta)}{P(X)}
 $$
+
+## Terminology
+
+[^multi-head learning]: depending on what you want to predict on your data you require an adequate **backbone network** and a certain amount of **prediction heads** [citation](https://stackoverflow.com/questions/56004483/what-is-a-multi-headed-model-and-what-exactly-is-a-head-in-a-model/56004582)
 
