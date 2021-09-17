@@ -104,21 +104,21 @@ Note:
       
       $$
       \begin{array}{l}
-      \text { Accuracy }=\frac{1}{T} \sum_{i=1}^{T} R_{T, i}\\
-      \qquad\text{explanation: skip}\\
-      \text { Backward Transfer }=\frac{1}{T-1} \sum_{i=1}^{T-1} (R_{T,i}-R_{i, i})
-      \left\{
-      \begin{array}{l}
-      <0,usually <0\\
-      =0,\\
-      0,great job!\\
-      \end{array}
-      \right.\\
-      \qquad\qquad=\text{average value of}\sum(\text{final accuracy of each task}-\text{initial accuracy of each task})\\
-      \qquad\text{explanation: measure how better this life-long learning it is }\\\\
-      \text { Forward Transfer }=\frac{1}{T-1} \sum_{i=2}^{T} R_{i-1, i}-R_{0, i}\\
-      \qquad \text{explanation: how better it is before learn task T}
-      \end{array}\\
+\text { Accuracy }=\frac{1}{T} \sum_{i=1}^{T} R_{T, i}\\
+\qquad\text{explanation: skip}\\
+\text { Backward Transfer }=\frac{1}{T-1} \sum_{i=1}^{T-1} (R_{T,i}-R_{i, i})
+\left\{
+\begin{array}{l}
+<0,usually <0\\
+=0,\\
+0,great job!\\
+\end{array}
+\right.\\
+\qquad\qquad=\text{average value of}\sum(\text{final accuracy of each task}-\text{initial accuracy of each task})\\
+\qquad\text{explanation: measure how better this life-long learning it is }\\\\
+\text { Forward Transfer }=\frac{1}{T-1} \sum_{i=2}^{T} R_{i-1, i}-R_{0, i}\\
+\qquad \text{explanation: how better it is before learn task T}
+\end{array}\\
       $$
 
 * Model Expansion
@@ -175,8 +175,6 @@ Rethinking difference:
 | incremental domain learning |                   | $\neq$                     | $=$                        |
 | incremental task learning   |                   | $\neq$                     | $\neq$                     |
 
-
-
 ## Prior-focused
 
 Question: Will life-long learning perform better on stable model? I guess yes. But I can not give the math proof.
@@ -185,22 +183,20 @@ e.g. For the same task 1, get model A after 10 epoch, get model B after 20 epoch
 
 How about their performance on task 2?
 
-
-
 ### [EWC](Literatures/Overcoming catastrophic forgetting in neuralnetworks.pdf)
 
 * Problem  Addressing:
-
+  
   Achieving artiﬁcial general intelligence **requires that agents are able to learn and remember many different tasks** Legg and Hutter [2007]. This is particularly difﬁcult in real-world settings: the sequence of **tasks may not be explicitly labelled, tasks may switch unpredictably, and any individual task may not recur for long time intervals**. Critically, therefore, intelligent agents must demonstrate a capacity for continual learning: that is, **the ability to learn consecutive tasks without forgetting how to perform previously trained tasks.**
 
 * Biomedical Realted Information
-
+  
   Papers need to read
-
+  
   learnign new skill ? --> proportion of excitatory synapses are strengthenedA : volume increased --> months later, these dendritic spines remain
-
+  
   When some specific spines are erased. the skill is forgotten
-
+  
   Based on previous experimental findings, we could said continual learning is relay on task-specific stynaptics' consolidation: knowledge about how to perform a previously acquired task is durably encoded in a proportion of synapses that are rendered less plastic and therefore stable over long timescales.
 
 Briefly speaking: Compute the 2nd derivative of the distribution to measure if current distributuion is strong enough to express the potential distribution.
@@ -266,9 +262,7 @@ $$
 
 &\because \frac{\partial^{2}}{\partial \theta^{2}} \log p(X ; \theta)=\frac{\frac{\partial^{2}}{\partial \theta^{2}} p(X ; \theta)}{p(X ; \theta)}-\left(\frac{\frac{\partial}{\partial \theta} p(X ; \theta)}{p(X ; \theta)}\right)^{2}=\frac{\frac{\partial^{2}}{\partial \theta^{2}} p(X ; \theta)}{p(X ; \theta)}-\left(\frac{\partial}{\partial \theta} \log p(X ; \theta)\right)^{2}\\
 
-
 &addition \because \mathrm{E}\left[\frac{\frac{\partial^{2}}{\partial \theta^{2}} p(X ; \theta)}{p(X ; \theta)} \mid \theta\right]=\frac{\partial^{2}}{\partial \theta^{2}} \int_{\mathbb{R}} p(x ; \theta) d x=0\\
-
 
 &\therefore \mathcal{I}=-E\left(\frac{\partial^{2}}{\partial \theta^{2}} \log p(\mathbf{X} ; \theta)\right)
 \end{array}
@@ -283,18 +277,12 @@ e.g. normalized Bernoulli log likelihood
 
 At here, it's curvature of top point. The larger curvature is, the Bernoulli sharper log likelihood which means contain more info (Reliable).
 
-
-
 Thererfore fisher information could be used to determine if the variable is crucial to previous task.
-
-
 
 Lost Function:
 $$
 \mathcal{L}(\theta)=\mathcal{L}_{B}(\theta)+\sum_{i} \frac{\lambda}{2} F_{i}\left(\theta_{i}-\theta_{A, i}^{*}\right)^{2}\\
 $$
-
-
 
 $\theta^{*}_{A,i}$ parameter learned from task A
 
@@ -314,8 +302,6 @@ $$
 $$
 **They all follow the same idea that extract information from the curvature of the function. Explainable**
 
-
-
 ## Model Growing
 
 ### [Progressive Neural Networks](Literatures/Progressive neural networks.pdf)
@@ -326,16 +312,13 @@ $$
 
 <img src="https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210914194933820.png" alt="image-20210914194933820" style="zoom:25%;" />
 
-
-
 **Drawbacks**
 
 1. model grows linarly with the number of trained tasks
 
 2. Need to know task labels during test
 
-3. 
-   1. Avoid forgetting
+3. 1. Avoid forgetting
    2. x Fixed memory and compute
    3. Enable forward transfer
    4. x Enable backward transfor
@@ -345,21 +328,19 @@ $$
 
 ### [Learning without Forgetting](Literatures/Learning without Forgetting.pdf)
 
-| <img src="https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210914211145246.png" alt="image-20210914211145246" style="zoom:50%;" /> | <img src="https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210914212313448.png" alt="image-20210914212313448" style="zoom:50%;" /> |      |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
+| <img src="https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210914211145246.png" alt="image-20210914211145246" style="zoom:50%;" /> | <img src="https://raw.githubusercontent.com/BeBubbled/PicGoImages-WorkSpace/master/image-20210914212313448.png" alt="image-20210914212313448" style="zoom:50%;" /> |     |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
 
 Training Method
 
-| Training method                   | -                                                            |
-| --------------------------------- | ------------------------------------------------------------ |
-| Feature extraction                | Fix $\theta_{s}\, ,\theta_{o}$ train $\theta_{n}$            |
-| Finetune                          | Fix $\theta_{s}$ train $\theta_{o}\, ,\theta_{n}$            |
-| Joint training                    | re-train all layers $\theta_{s}\, ,\theta_{o}\, ,\theta_{n}$<br />**Dataset: all tasks' images&labels** |
+| Training method                   | -                                                                                                                   |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Feature extraction                | Fix $\theta_{s}\, ,\theta_{o}$ train $\theta_{n}$                                                                   |
+| Finetune                          | Fix $\theta_{s}$ train $\theta_{o}\, ,\theta_{n}$                                                                   |
+| Joint training                    | re-train all layers $\theta_{s}\, ,\theta_{o}\, ,\theta_{n}$<br />**Dataset: all tasks' images&labels**             |
 | Learning without Forgetting (LwF) | re-train all layers $\theta_{s}\, ,\theta_{o}\, ,\theta_{n}$<br />**Dataset: limit to the new task's images&label** |
 
  need experiment to explore more
-
-
 
 # Reading Waitlist
 
@@ -404,4 +385,3 @@ $$
 ## Terminology
 
 [^multi-head learning]: depending on what you want to predict on your data you require an adequate **backbone network** and a certain amount of **prediction heads** [citation](https://stackoverflow.com/questions/56004483/what-is-a-multi-headed-model-and-what-exactly-is-a-head-in-a-model/56004582)
-
