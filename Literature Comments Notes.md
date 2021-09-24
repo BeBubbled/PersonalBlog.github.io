@@ -210,7 +210,7 @@ $$
 \log p(\theta|D_{1})&\propto \log p(\mathcal{D}_{1} \mid \theta)+\log p(\theta)\\
 \end{array}\\
 $$
-now considering that $\textcolor{Red}{\text{after task 1}}$ we have received new task $T_{2}$
+nowconsidering that $\textcolor{Red}{\text{after task 1}}$ we have received new task $T_{2}$
 $$
 \begin{array}{ll}
 \log( p(\theta |D_{1},D_{2}))&=log(\dfrac{p(D_{1},D_{2}\mid \theta)* p(\theta)}{p(D_{2}|D_{1})})\\
@@ -381,6 +381,10 @@ The Essence of Neural Network
 $$
 P(\theta \mid X)=\frac{P(X \mid \theta) \times P(\theta)}{P(X)}
 $$
+
+
+
+
 
 ## Terminology
 
